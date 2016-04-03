@@ -1,9 +1,9 @@
 import { Component } from 'angular2/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
-import { NotesComponent } from './notes.component';
-import { NoteDetailComponent} from './note.detail.component';
-import { NoteService } from './note.service';
-import { DashboardComponent } from './dashboard.component';
+import { NotesComponent } from './components/notes/notes.component';
+import { NoteDetailComponent} from './components/note.detail/note.detail.component';
+import { NoteService } from './services/note.service';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 @Component({

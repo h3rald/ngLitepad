@@ -1,4 +1,4 @@
-import {Note} from './note';
+import {Note} from '../models/note';
 
 export var NOTES: Note[] = [
   {id: 0, title: "ScrapBook"},

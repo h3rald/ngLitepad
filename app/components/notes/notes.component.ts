@@ -1,14 +1,14 @@
 import {Component} from 'angular2/core';
-import {Note} from './note';
-import {NoteDetailComponent} from './note.detail.component';
-import {NoteService} from './note.service';
+import {Note} from '../../models/note';
+import {NoteDetailComponent} from '../note.detail/note.detail.component';
+import {NoteService} from '../../services/note.service';
 import {OnInit} from 'angular2/core';
 import { Router } from 'angular2/router';
 
 @Component({
   selector: 'notes',
-  templateUrl : 'app/notes.component.html' ,
-  styleUrls:['app/notes.component.css'],
+  templateUrl : 'app/components/notes/notes.component.html' ,
+  styleUrls:['app/components/notes/notes.component.css'],
 directives: [NoteDetailComponent],
 })
 export class NotesComponent implements OnInit {

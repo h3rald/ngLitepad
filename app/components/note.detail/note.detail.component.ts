@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from 'angular2/core';
-import { Note } from './note'
+import { Note } from '../../models/note'
 import { RouteParams } from 'angular2/router';
-import { NoteService } from './note.service';
+import { NoteService } from '../../services/note.service';
 
 @Component({
   selector: 'note-detail',
-  templateUrl: '/app/note.detail.component.html',
-  styleUrls: ['app/note.detail.component.css']
+  templateUrl: '/app/components/note.detail/note.detail.component.html',
+  styleUrls: ['app/components/note.detail/note.detail.component.css']
 })
 export class NoteDetailComponent implements OnInit {
   @Input() note: Note

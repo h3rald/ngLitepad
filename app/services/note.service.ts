@@ -1,6 +1,6 @@
 import {NOTES} from './mock-notes';
 import {Injectable} from 'angular2/core';
-import {Note} from './note';
+import {Note} from '../models/note';
 
 @Injectable()
 export class NoteService {
