@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this._noteService.getNotes()
-      .then(notes => this.notes = notes.slice(1, 3));
+      .then(notes => this.notes = notes.slice(0, 3));
   }
 
   goToDetail(note: Note) {

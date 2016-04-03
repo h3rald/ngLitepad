@@ -17,7 +17,7 @@ export class NotesComponent implements OnInit {
   public notes;
   
   constructor(
-    private _NoteService: NoteService,
+    private _noteService: NoteService,
     private _router: Router){ };
   
   ngOnInit() {
@@ -29,7 +29,7 @@ export class NotesComponent implements OnInit {
   }
   
   getNotes(){
-    this._NoteService.getNotes().then(notes => this.notes = notes);
+    this._noteService.getNotes().then(notes => this.notes = notes);
   }
   
   goToDetail(){

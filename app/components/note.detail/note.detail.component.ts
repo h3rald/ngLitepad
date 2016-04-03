@@ -17,12 +17,17 @@ export class NoteDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    let id = +this._routeParams.get('id');
+    let id = this._routeParams.get('id');
     this._noteService.getNote(id)
       .then(note => this.note = note);
   }
 
   goBack() {
     window.history.back();
+  }
+   
+  deleteNote(){
+    this._noteService.delete(this.note);
+    this.goBack();
   }
 }
