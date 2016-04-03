@@ -14,4 +14,9 @@ export class NoteService {
     return Promise.resolve(NOTES)
       .then(notes => notes.filter(note => note.id === id)[0]);
   }
+  create(note: Note){
+    let newNote: Note = {id: NOTES.length, title: note.title};
+    NOTES.push(newNote);
+    return Promise.resolve(newNote);
+  }
 } 

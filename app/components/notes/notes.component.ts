@@ -29,7 +29,7 @@ export class NotesComponent implements OnInit {
   }
   
   getNotes(){
-    this._NoteService.getNotesSlowly().then(notes => this.notes = notes);
+    this._NoteService.getNotes().then(notes => this.notes = notes);
   }
   
   goToDetail(){

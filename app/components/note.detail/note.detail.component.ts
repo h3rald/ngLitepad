@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from 'angular2/core';
+import { Component, OnInit } from 'angular2/core';
 import { Note } from '../../models/note'
 import { RouteParams } from 'angular2/router';
 import { NoteService } from '../../services/note.service';
@@ -9,7 +9,7 @@ import { NoteService } from '../../services/note.service';
   styleUrls: ['app/components/note.detail/note.detail.component.css']
 })
 export class NoteDetailComponent implements OnInit {
-  @Input() note: Note
+  note: Note
 
   constructor(
     private _noteService: NoteService,

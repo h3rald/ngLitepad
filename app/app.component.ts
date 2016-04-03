@@ -4,20 +4,13 @@ import { NotesComponent } from './components/notes/notes.component';
 import { NoteDetailComponent} from './components/note.detail/note.detail.component';
 import { NoteService } from './services/note.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-
+import { NewNoteComponent } from './components/note.new/note.new.component';
 
 @Component({
   selector: 'app',
   directives: [ROUTER_DIRECTIVES],
   providers: [ROUTER_PROVIDERS, NoteService],
-  template : `
-  <h1>{{title}}</h1>
-  <nav>
-    <a [routerLink]="['Dashboard']">Dashboard</a>
-    <a [routerLink]="['Notes']">Notes</a>
-  </nav>
-  <router-outlet></router-outlet>
-  `,
+  templateUrl: 'app/app.component.html',
   styleUrls: ['app/app.component.css']
 })
 @RouteConfig([
@@ -36,6 +29,11 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     path: '/detail/:id',
     name: 'NoteDetail',
     component: NoteDetailComponent
+  },
+  {
+    path: '/new',
+    name: 'NewNote',
+    component: NewNoteComponent
   }
 ])
 export class AppComponent {
