@@ -5,11 +5,12 @@ import { NoteService } from '../../services/note.service';
 
 @Component({
   selector: 'note-detail',
-  templateUrl: '/app/components/note.detail/note.detail.component.html',
+  templateUrl: 'app/components/note.detail/note.detail.component.html',
   styleUrls: ['app/components/note.detail/note.detail.component.css']
 })
 export class NoteDetailComponent implements OnInit {
-  note: Note
+  note: Note;
+  errorMessage: string;
 
   constructor(
     private _noteService: NoteService,
@@ -18,8 +19,10 @@ export class NoteDetailComponent implements OnInit {
 
   ngOnInit() {
     let id = this._routeParams.get('id');
-    this._noteService.getNote(id)
-      .then(note => this.note = note);
+    this._noteService.get(id).subscribe(
+      note => this.note = note,
+      error => this.errorMessage = error
+    )
   }
 
   goBack() {
@@ -27,7 +30,9 @@ export class NoteDetailComponent implements OnInit {
   }
    
   deleteNote(){
-    this._noteService.delete(this.note);
-    this.goBack();
+    this._noteService.delete(this.note).subscribe(
+      note => this.goBack(),
+      error => this.errorMessage = error
+    );
   }
 }

@@ -9,3 +9,6 @@
   <button (click)="goBack()">Back</button>
     <button (click)="deleteNote()">Delete</button>
 </div>
+<div *ngIf="errorMessage">
+  {{errorMessage}}
+</div>

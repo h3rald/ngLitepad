@@ -2,10 +2,10 @@
   "name": "litepad",
   "version": "0.1.0",
   "scripts": {
-    "start": "concurrently \"npm run tsc:w\" \"npm run lite\" ",
+    "start": "concurrently \"npm run tsc:w\" \"npm run litestore\"",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "lite": "lite-server",
+    "litestore": "litestore -d:.",
     "typings": "typings",
     "postinstall": "typings install"
   },
@@ -20,25 +20,26 @@
   },
   "homepage": "https://github.com/h3rald/litepad#readme",
   "dependencies": {
-    "angular2": "2.0.0-beta.13",
+    "angular2": "^2.0.0-beta.15",
     "systemjs": "0.19.25",
     "es6-shim": "^0.35.0",
     "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-beta.2",
-    "zone.js": "0.6.6",
-    "@angular2-material/button": "^2.0.0-alpha.1",
-    "@angular2-material/card": "^2.0.0-alpha.1",
-    "@angular2-material/checkbox": "^2.0.0-alpha.1",
-    "@angular2-material/core": "^2.0.0-alpha.1",
-    "@angular2-material/sidenav": "^2.0.0-alpha.1",
-    "@angular2-material/toolbar": "^2.0.0-alpha.1",
+    "zone.js": "0.6.10",
+    "@angular2-material/button": "^2.0.0-alpha.2",
+    "@angular2-material/card": "^2.0.0-alpha.2",
+    "@angular2-material/checkbox": "^2.0.0-alpha.2",
+    "@angular2-material/core": "^2.0.0-alpha.2",
+    "@angular2-material/sidenav": "^2.0.0-alpha.2",
+    "@angular2-material/toolbar": "^2.0.0-alpha.2",
     "simplemde": "^1.10.1",
     "ui-router": "^1.0.0-alpha0"
   },
   "devDependencies": {
     "concurrently": "^2.0.0",
-    "lite-server": "^2.1.0",
-    "typescript": "^1.8.9",
-    "typings": "^0.7.11"
+    "node-sass": "^3.4.2",
+    "nodemon": "^1.9.1",
+    "typescript": "^1.8.10",
+    "typings": "^0.7.12"
   }
 }

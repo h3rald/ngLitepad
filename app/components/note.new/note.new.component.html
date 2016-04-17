@@ -1,5 +1,8 @@
 <div>
   <h2>New Note</h2>
+  <div *ngIf="errorMessage">
+    {{errorMessage}}
+  </div>
   <div>
     <label>Title: </label>
     <input [(ngModel)]="note.title" placeholder="title">

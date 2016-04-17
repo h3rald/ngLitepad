@@ -1,44 +1,67 @@
-import {NOTES} from './mock-notes';
 import {Injectable} from 'angular2/core';
+import { Http, Response, Headers, RequestOptions } from 'angular2/http';
+import { Observable } from 'rxjs/Rx';
 import {Note} from '../models/note';
 
 @Injectable()
 export class NoteService {
 
-  private _guid() {
-    function s4() {
-      return Math.floor((1 + Math.random()) * 0x10000)
-        .toString(16)
-        .substring(1);
+  private url = "http://localhost:9500/docs/litepad/notes/";
+
+  constructor(private http: Http) { };
+
+  private processData(res: Response) {
+    if (res.status < 200 || res.status > 300) {
+      throw new Error('Bad Response - ' + res.status)
     }
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-      s4() + '-' + s4() + s4() + s4();
+    try {
+      return res.json();
+    } catch (e){
+      console.warn("Response body is not in JSON format:", res)
+      return {}
+    }
   }
-  
-  private _notes: Note[] = NOTES.map(note => {
-    return {id: this._guid(), title: note.title}
-  });
-  
-  getNotes() {
-    return Promise.resolve(this._notes);  
+
+  private processNote(note: any) {
+    return {
+      id: note.id.replace('litepad/notes/', ''),
+      title: note.data.title,
+      created: new Date(Date.parse(note.created)),
+      modified: note.modified ? new Date(Date.parse(note.modified)) : null,
+      tags: note.tags
+    }
   }
-  getNote(id: string) {
-    return this.getNotes()
-      .then(notes => {
-        return notes.filter(note => {
-          return note.id === id
-        })[0]
-      });
+
+  private handleError(error: any) {
+    console.error(error);
+    return Observable.throw(error.json().error);
   }
+
+  getAll(): Observable<Note[]> {
+    return this.http.get(this.url)
+      .map(this.processData)
+      .map((json: any) => { return json.results.map(this.processNote) })
+      .catch(this.handleError)
+  }
+
+  get(id: string): Observable<Note> {
+    return this.http.get(this.url + id + "?raw=true")
+      .map(this.processData)
+      .map(this.processNote)
+      .catch(this.handleError)
+  }
+
   create(note: Note) {
-    let newNote: Note = { id: this._guid(), title: note.title };
-    this._notes.push(newNote);
-    return Promise.resolve(newNote);
+    let body = JSON.stringify({ title: note.title });
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(this.url, body, options)
+      .map(this.processData)
+      .catch(this.handleError)
   }
   delete(note: Note) {
-    this._notes.splice(this._notes.findIndex(value => {
-      return note.id === value.id
-    }), 1);
-    return Promise.resolve(note.id);
+    return this.http.delete(this.url + note.id)
+      .map(this.processData)
+      .catch(this.handleError)
   }
 } 

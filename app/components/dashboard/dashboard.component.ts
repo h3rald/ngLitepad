@@ -11,6 +11,7 @@ import { Router } from 'angular2/router';
 export class DashboardComponent implements OnInit {
 
   notes: Note[] = [];
+  errorMessage: string;
 
   constructor(
     private _noteService: NoteService,
@@ -18,8 +19,10 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._noteService.getNotes()
-      .then(notes => this.notes = notes.slice(0, 3));
+    this._noteService.getAll().subscribe(
+      notes => this.notes = notes,
+      error => this.errorMessage = <any>error
+    )
   }
 
   goToDetail(note: Note) {

@@ -1,4 +1,7 @@
 <h2>My Notes</h2>
+<div *ngIf="errorMessage">
+  {{errorMessage}}
+</div>
 <ul class="notes">
   <li *ngFor="#note of notes; #i=index" [class.selected]="note === selectedNote" (click)="onSelect(note)">
     <span class="badge">{{i+1}}</span> {{note.title}}

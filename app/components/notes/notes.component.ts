@@ -15,6 +15,7 @@ export class NotesComponent implements OnInit {
   title = 'LitePad';
   selectedNote: Note;
   public notes;
+  public errorMessage;
   
   constructor(
     private _noteService: NoteService,
@@ -29,7 +30,10 @@ export class NotesComponent implements OnInit {
   }
   
   getNotes(){
-    this._noteService.getNotes().then(notes => this.notes = notes);
+    this._noteService.getAll().subscribe(
+      notes => this.notes = notes,
+      error => this.errorMessage = <any>error
+    )
   }
   
   goToDetail(){

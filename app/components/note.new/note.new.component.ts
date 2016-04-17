@@ -11,6 +11,7 @@ import { NoteService } from '../../services/note.service';
 export class NewNoteComponent {
   
   @Input() note: Note;
+  errorMessage: string;
   
   constructor(
     private _noteService: NoteService,
@@ -20,8 +21,10 @@ export class NewNoteComponent {
   }
   
   create(){
-    this._noteService.create(this.note)
-      .then(note => this._router.navigate(['Notes']));
+    this._noteService.create(this.note).subscribe(
+      note => this.note = note,
+      error => this.errorMessage = error
+    )
   }
   
 }
