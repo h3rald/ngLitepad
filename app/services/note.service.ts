@@ -26,6 +26,7 @@ export class NoteService {
     return {
       id: note.id.replace('litepad/notes/', ''),
       title: note.data.title,
+      contents: note.data.contents,
       created: new Date(Date.parse(note.created)),
       modified: note.modified ? new Date(Date.parse(note.modified)) : null,
       tags: note.tags
@@ -52,7 +53,7 @@ export class NoteService {
   }
 
   create(note: Note) {
-    let body = JSON.stringify({ title: note.title });
+    let body = JSON.stringify({ title: note.title, contents: note.contents });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.http.post(this.url, body, options)

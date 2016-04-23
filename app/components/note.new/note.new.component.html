@@ -1,11 +1,28 @@
-<div>
-  <h2>New Note</h2>
+<section class="md-whiteframe-z1">
   <div *ngIf="errorMessage">
     {{errorMessage}}
   </div>
-  <div>
-    <label>Title: </label>
-    <input [(ngModel)]="note.title" placeholder="title">
-  </div>
-  <button (click)="create()">Create Note</button>
-</div>
+  <md-toolbar class="md-primary">
+    <div class="md-toolbar-tools">
+      <h3>New Note</h3>
+      <span flex></span>
+      <button md-button class="md-primary md-icon-button" aria-label="Save" (click)="create()">
+          <i md-icon>done</i>
+        </button>
+    </div>
+  </md-toolbar>
+  <md-content layout-padding>
+    <div layout-gt-sm="row">
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>Title</label>
+        <input md-input [(ngModel)]="note.title">
+      </md-input-container>
+    </div>
+    <div layout-gt-sm="row">
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>Contents</label>
+        <textarea md-input [(ngModel)]="note.contents" columns="1" rows="7"></textarea>
+      </md-input-container>
+    </div>
+  </md-content>
+</section>
