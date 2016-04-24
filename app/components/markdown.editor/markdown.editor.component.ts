@@ -46,7 +46,7 @@ export class MarkdownEditor {
    set source(text) {
       this.editor.setValue(text || "");
       this.editor.clearSelection();
-      this.editor.focus();
+      //this.editor.focus();
     }
 
 

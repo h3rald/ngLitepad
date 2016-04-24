@@ -79,6 +79,7 @@ export class NotesComponent implements OnInit {
     })
     this._noteService.deleteAll(toDelete).subscribe(
       response => {
+        this.selectedNotes = [];
         this.getNotes();
       },
       error => this.errorMessage = <any>error

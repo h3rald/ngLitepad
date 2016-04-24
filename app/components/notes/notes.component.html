@@ -28,6 +28,7 @@
           <th class="md-text-cell sortable">Title</th>
           <th class="md-text-cell sortable" hide show-gt-md>Created on</th>
           <th class="md-text-cell sortable" hide show-gt-xs>Modified on</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -35,6 +36,11 @@
           <td class="md-text-cell">{{ note.title }}</td>
           <td class="md-text-cell" hide show-gt-md>{{ note.created }}</td>
           <td class="md-text-cell" hide show-gt-xs>{{ note.modified }}</td>
+          <td style="padding-right: 0;">
+            <button md-button class="md-primary md-icon-button" aria-label="View" [routerLink]="['NoteDetail', {id: note.id}]">
+              <i md-icon>open_in_new</i>
+            </button>  
+          <td>
         </tr>
       </tbody>
     </md-data-table>

@@ -1,4 +1,6 @@
 node_modules
+data.db
+data.db-journal
 app/*.js
 app/*.map
 app/**/*.js
