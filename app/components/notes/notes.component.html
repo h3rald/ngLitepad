@@ -23,8 +23,7 @@
   <div *ngIf="notes && notes.length > 0">
     <md-data-table [selectable]="true">
       <thead hide show-gt-xs>
-        <tr>
-          <th></th>
+        <tr md-data-table-header-selectable-row (onChange)="onSelectAll($event)">
           <th class="md-text-cell sortable">Title</th>
           <th class="md-text-cell sortable" hide show-gt-md>Created on</th>
           <th class="md-text-cell sortable" hide show-gt-xs>Modified on</th>

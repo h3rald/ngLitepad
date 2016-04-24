@@ -43,6 +43,14 @@ export class NotesComponent implements OnInit {
     }
   }
   
+  onSelectAll(data: ITableSelectableRowSelectionChange){
+    if (data.isActive){
+      this.selectedNotes = this.notes.map((note) => note.id);
+    } else {
+      this.selectedNotes = [];
+    }
+  }
+  
   getNotes(){
     this._noteService.getAll().subscribe(
       notes => this.notes = notes,
