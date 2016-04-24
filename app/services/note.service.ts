@@ -37,9 +37,14 @@ export class NoteService {
     console.error(error);
     return Observable.throw(error.json().error);
   }
+  
+  private processMultipleResponses(resp: any) {
+    console.log(resp); 
+    return resp;
+  }
 
   getAll(): Observable<Note[]> {
-    return this.http.get(this.url)
+    return this.http.get(this.url + "?sort=-modified")
       .map(this.processData)
       .map((json: any) => { return json.results.map(this.processNote) })
       .catch(this.handleError)
@@ -58,11 +63,33 @@ export class NoteService {
     let options = new RequestOptions({ headers: headers });
     return this.http.post(this.url, body, options)
       .map(this.processData)
+      .map(this.processNote)
       .catch(this.handleError)
   }
+  
+  update(note: Note) {
+    let body = JSON.stringify({ title: note.title, contents: note.contents });
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.put(this.url + note.id, body, options)
+      .map(this.processData)
+      .map(this.processNote)
+      .catch(this.handleError)
+  }
+  
   delete(note: Note) {
     return this.http.delete(this.url + note.id)
-      .map(this.processData)
+      .map(() => { return note })
       .catch(this.handleError)
+  }
+  
+  deleteAll(notes: Array<Note>){
+    let reqs = [];
+    notes.forEach((note) => {
+      reqs.push(this.delete(note));
+    })
+    return Observable.forkJoin(reqs)
+      .map(this.processMultipleResponses)
+      .catch(this.handleError);
   }
 } 

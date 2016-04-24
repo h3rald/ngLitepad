@@ -1,0 +1,36 @@
+<section class="md-whiteframe-z1">
+  <div *ngIf="errorMessage">
+    {{errorMessage}}
+  </div>
+  <div *ngIf="note" >
+    <md-toolbar class="md-primary">
+      <div class="md-toolbar-tools">
+        <h3>{{note.title}}</h3>
+        <span flex></span>
+        <button md-button class="md-primary md-icon-button" aria-label="Save" (click)="save()">
+            <i md-icon>done</i>
+        </button>
+        <button md-button class="md-primary md-icon-button" aria-label="Cancel" [routerLink]="['NoteDetail', {id: note.id}]">
+            <i md-icon>clear</i>
+        </button>
+        <button md-button class="md-primary md-icon-button" aria-label="View all notes" [routerLink]="['Notes']">
+          <i md-icon>list</i>
+        </button>
+      </div>
+    </md-toolbar>
+    <md-content layout-padding>
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Title</label>
+          <input md-input [(ngModel)]="note.title">
+        </md-input-container>
+      </div>
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Contents</label>
+          <textarea md-input [(ngModel)]="note.contents" columns="1" rows="7"></textarea>
+        </md-input-container>
+      </div>
+    </md-content>
+  </div>
+</section>

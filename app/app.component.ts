@@ -13,6 +13,7 @@ import { NoteDetailComponent} from './components/note.detail/note.detail.compone
 import { NoteService } from './services/note.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NewNoteComponent } from './components/note.new/note.new.component';
+import { EditNoteComponent } from './components/note.edit/note.edit.component';
 import {Media, MATERIAL_DIRECTIVES, SidenavService} from 'ng2-material/all';
 
 @Component({
@@ -44,6 +45,11 @@ import {Media, MATERIAL_DIRECTIVES, SidenavService} from 'ng2-material/all';
     path: '/detail/:id',
     name: 'NoteDetail',
     component: NoteDetailComponent
+  },
+  {
+    path: '/edit/:id',
+    name: 'EditNote',
+    component: EditNoteComponent
   },
   {
     path: '/new',

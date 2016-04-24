@@ -1,14 +1,25 @@
-<div *ngIf="note">
-  <h2>{{note.title}}</h2>
-  <div>
-    <label>id: </label>{{note.id}}</div>
-  <div>
-    <label>Title: </label>
-    {{note.title}}
+<section class="md-whiteframe-z1">
+  <div *ngIf="errorMessage">
+    {{errorMessage}}
   </div>
-  <button (click)="goBack()">Back</button>
-    <button (click)="deleteNote()">Delete</button>
-</div>
-<div *ngIf="errorMessage">
-  {{errorMessage}}
-</div>
+  <div *ngIf="note" >
+    <md-toolbar class="md-primary">
+      <div class="md-toolbar-tools">
+        <h3>{{note.title}}</h3>
+        <span flex></span>
+        <button md-button class="md-primary md-icon-button" aria-label="Delete" (click)="delete()">
+            <i md-icon>delete</i>
+          </button>
+          <button md-button class="md-primary md-icon-button" aria-label="Edit" [routerLink]="['EditNote', {id: note.id}]">
+            <i md-icon>create</i>
+          </button>
+          <button md-button class="md-primary md-icon-button" aria-label="View all Notes" [routerLink]="['Notes']">
+            <i md-icon>list</i>
+          </button>
+      </div>
+    </md-toolbar>
+    <md-content layout-padding layout-fill>
+      {{note.contents}}
+    </md-content>
+  </div>
+</section>

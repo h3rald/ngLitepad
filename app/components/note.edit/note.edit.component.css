@@ -1,0 +1,4 @@
+textarea.md-input {
+  min-height: 200px !important;
+  overflow-y: scroll;
+}

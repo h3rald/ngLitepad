@@ -27,10 +27,10 @@
                 breakAction="show">
     </md-toolbar>
     <md-toolbar>
-      <h1 md-peekaboo
+      <h1 layout-padding md-peekaboo
           [breakMd]="72"
           [breakXs]="20"
-          breakAction="hide">{{title}}</h1>
+          breakAction="hide" [routerLink]="['Notes']">{{title}}</h1>
     </md-toolbar>
     <!--
     <md-toolbar class="fixed-toolbar">
@@ -62,20 +62,18 @@
       
     </md-toolbar>
 -->
-    <md-content md-scroll-y layout-padding>
-      <button md-fab class="md-primary md-fab-position-bottom-right" aria-label="New Note" [routerLink]="['NewNote']">
-      <i md-icon>note_add</i>
-    </button>
+    <md-content md-scroll-y layout="column" flex="100" layout-padding>
+      
       <router-outlet></router-outlet>
       
     </md-content>
-
+ <!--
 
     <footer>
       FOOTER
       
       <div class="container" layout="row" layout-align="center center">
-        <!--
+       
         <a class="previous" flex="50" *ngIf="navigation.prevLink"
            layout="row" layout-align="start center"
            [routerLink]="navigation.prevLink.routeLink">
@@ -95,10 +93,11 @@
           </span>
           <i md-icon>arrow_forward</i>
         </a>
-        -->
+       
       </div>
       
     </footer>
+     -->
 
   </section>
   

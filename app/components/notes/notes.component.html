@@ -1,15 +1,40 @@
-<h2>My Notes</h2>
-<div *ngIf="errorMessage">
-  {{errorMessage}}
-</div>
-<ul class="notes">
-  <li *ngFor="#note of notes; #i=index" [class.selected]="note === selectedNote" (click)="onSelect(note)">
-    <span class="badge">{{i+1}}</span> {{note.title}}
-  </li>
-</ul>
-<div *ngIf="selectedNote">
-  <h2>
-    {{selectedNote.title | uppercase}}
-  </h2>
-  <button (click)="goToDetail()">View Details</button>
-</div>
+<button md-fab class="md-primary md-fab-position-bottom-right" aria-label="New Note" [routerLink]="['NewNote']">
+      <i md-icon>add</i>
+    </button>
+<section class="md-whiteframe-z1">
+  <md-toolbar class="md-primary">
+    <div class="md-toolbar-tools">
+      <h3>Notes</h3>
+      <span flex></span>
+      <button *ngIf="selectedNotes.length >= 1" md-button class="md-primary md-icon-button" aria-label="Delete" (click)="delete()">
+          <i md-icon>delete</i>
+        </button>
+      <button *ngIf="selectedNotes.length == 1" md-button class="md-primary md-icon-button" aria-label="Edit" (click)="edit()">
+          <i md-icon>create</i>
+        </button>
+      <button *ngIf="selectedNotes.length == 1" md-button class="md-primary md-icon-button" aria-label="View" (click)="view()">
+          <i md-icon>open_in_new</i>
+        </button>
+    </div>
+  </md-toolbar>
+  <div *ngIf="errorMessage">
+    {{errorMessage}}
+  </div>
+  <md-data-table [selectable]="true">
+    <thead>
+      <tr>
+        <th></th>
+        <th class="md-text-cell sortable">Title</th>
+        <th class="md-text-cell sortable">Created At</th>
+        <th class="md-text-cell sortable">Modified At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="#note of notes" md-data-table-selectable-row [selectable-value]="note.id" (onChange)="onSelect($event)">
+        <td class="md-text-cell">{{ note.title }}</td>
+        <td class="md-text-cell">{{ note.created }}</td>
+        <td class="md-text-cell">{{ note.modified }}</td>
+      </tr>
+    </tbody>
+  </md-data-table>
+</section>

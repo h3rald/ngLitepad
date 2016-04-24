@@ -9,6 +9,9 @@
       <button md-button class="md-primary md-icon-button" aria-label="Save" (click)="create()">
           <i md-icon>done</i>
         </button>
+        <button md-button class="md-primary md-icon-button" aria-label="View all notes" [routerLink]="['Notes']">
+          <i md-icon>list</i>
+        </button>
     </div>
   </md-toolbar>
   <md-content layout-padding>
