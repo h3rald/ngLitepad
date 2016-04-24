@@ -7,7 +7,7 @@
 
   <link rel="stylesheet" href="node_modules/ng2-material/dist/font.css">
   <link rel="stylesheet" href="node_modules/ng2-material/dist/ng2-material.css">
-  
+
   <!-- 1. Load libraries -->
   <!-- IE required polyfills, in this exact order -->
   <script src="node_modules/es6-shim/es6-shim.min.js"></script>
@@ -20,8 +20,10 @@
   <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
   <script src="node_modules/angular2/bundles/router.dev.js"></script>
   <script src="node_modules/angular2/bundles/http.dev.js"></script>
-  
-<!--  <script src="node_modules/ng2-material/dist/ng2-material.js"></script>
+  <script src="vendor/ace/ace.js"></script>
+  <script src="vendor/ace/mode-markdown.js"></script>
+
+  <!--  <script src="node_modules/ng2-material/dist/ng2-material.js"></script>
 -->
   <!-- 2. Configure SystemJS -->
   <script>
@@ -36,7 +38,8 @@
           }
         },
         map: {
-            'ng2-material': 'node_modules/ng2-material'   
+            'ng2-material': 'node_modules/ng2-material',
+            'marked': 'node_modules/marked/lib/marked.js'
         }
       });
       System.import('app/main')
@@ -47,7 +50,11 @@
 <!-- 3. Display the application -->
 
 <body>
- <app><section layout="row" flex="100" layout-padding layout-align="center center">Loading...</section></app>
+  <app>
+    <section layout="row" flex="100" layout-padding layout-fill layout-align="center center">
+      <h3>Loading...</h3>
+    </section>
+  </app>
 </body>
 
 </html>

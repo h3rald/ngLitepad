@@ -1,10 +1,17 @@
-import {Component} from 'angular2/core';
+import {Component, ElementRef } from 'angular2/core';
 import {Note} from '../../models/note';
 import {NoteDetailComponent} from '../note.detail/note.detail.component';
 import {NoteService} from '../../services/note.service';
 import {OnInit} from 'angular2/core';
 import { Router, RouterLink } from 'angular2/router';
-import { MATERIAL_DIRECTIVES, ITableSelectableRowSelectionChange } from 'ng2-material/all';
+import { 
+  MATERIAL_DIRECTIVES, 
+  ITableSelectableRowSelectionChange,
+  MdDialog,
+  MdDialogConfig,
+  MdDialogBasic,
+  MdDialogRef
+} from 'ng2-material/all';
 
 @Component({
   selector: 'notes',
@@ -13,13 +20,16 @@ import { MATERIAL_DIRECTIVES, ITableSelectableRowSelectionChange } from 'ng2-mat
 directives: [NoteDetailComponent, MATERIAL_DIRECTIVES, RouterLink],
 })
 export class NotesComponent implements OnInit {
-  selectedNotes: Array<string> = [];
+  public selectedNotes: Array<string> = [];
   public notes: Array<Note>;
   public errorMessage;
   
   constructor(
     private _noteService: NoteService,
-    private _router: Router){ };
+    private _router: Router,
+    private _element: ElementRef,
+    private _dialog: MdDialog 
+    ){ };
   
   ngOnInit() {
     this.getNotes();
@@ -36,9 +46,30 @@ export class NotesComponent implements OnInit {
   getNotes(){
     this._noteService.getAll().subscribe(
       notes => this.notes = notes,
-      error => this.errorMessage = <any>error
+      error => {
+        this.errorMessage = <any>error
+        this.notes = [];
+      }
     )
   }
+  
+  confirmDelete(ev) {
+    let config = new MdDialogConfig()
+      .textContent('Do you want to permanently delete selected notes?')
+      .clickOutsideToClose(true)
+      .title('Delete Notes')
+      .ok('Delete')
+      .cancel('Cancel')
+      .targetEvent(ev);
+    this._dialog.open(MdDialogBasic, this._element, config)
+      .then((ref: MdDialogRef) => {
+        ref.whenClosed.then((result) => {
+          if (result) {
+            this.delete();
+          }
+        })
+      });
+  };
   
   delete(){
     let toDelete = this.selectedNotes.map(id => {

@@ -22,10 +22,15 @@
       </md-input-container>
     </div>
     <div layout-gt-sm="row">
-      <md-input-container class="md-block" flex-gt-sm>
-        <label>Contents</label>
-        <textarea md-input [(ngModel)]="note.contents" columns="1" rows="7"></textarea>
-      </md-input-container>
-    </div>
+          <div 
+            style="height:50%;"
+            class="md-block"
+            flex-gt-sm
+            md-input 
+            markdown-editor 
+            [source]="note.contents" 
+            (change)="updateContents($event)">
+          </div>
+      </div>
   </md-content>
 </section>

@@ -11,7 +11,6 @@ import {Http, Response} from "angular2/http";
 import { NotesComponent } from './components/notes/notes.component';
 import { NoteDetailComponent} from './components/note.detail/note.detail.component';
 import { NoteService } from './services/note.service';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NewNoteComponent } from './components/note.new/note.new.component';
 import { EditNoteComponent } from './components/note.edit/note.edit.component';
 import {Media, MATERIAL_DIRECTIVES, SidenavService} from 'ng2-material/all';
@@ -30,11 +29,6 @@ import {Media, MATERIAL_DIRECTIVES, SidenavService} from 'ng2-material/all';
   }
 })
 @RouteConfig([
-  {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: DashboardComponent
-  },
   {
     path: '/notes',
     name: 'Notes',

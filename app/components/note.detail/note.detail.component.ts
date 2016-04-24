@@ -3,6 +3,7 @@ import { Note } from '../../models/note'
 import { RouteParams, Router, RouterLink } from 'angular2/router';
 import { NoteService } from '../../services/note.service';
 import { MATERIAL_DIRECTIVES } from 'ng2-material/all';
+import marked from 'marked';
 
 @Component({
   selector: 'note-detail',
@@ -12,6 +13,7 @@ import { MATERIAL_DIRECTIVES } from 'ng2-material/all';
 })
 export class NoteDetailComponent implements OnInit {
   note: Note;
+  html: string;
   errorMessage: string;
 
   constructor(
@@ -23,7 +25,10 @@ export class NoteDetailComponent implements OnInit {
   ngOnInit() {
     let id = this._routeParams.get('id');
     this._noteService.get(id).subscribe(
-      note => this.note = note,
+      note => {
+        this.note = note;
+        this.html = marked.parse(note.contents.toString());
+      },
       error => this.errorMessage = error
     )
   }
