@@ -3,9 +3,34 @@ h1 {
 }
 
 .app-content {
-  height: calc(100vh - 64px);
+  height: 100%;
 }
 
 footer {
   height: 64px;
+}
+
+.main-toolbar {
+  min-height: 40px;
+}
+
+.main-toolbar h1 {
+  margin: 5px;
+  font-weight: normal;
+}
+ .main-toolbar md-input-container {
+   margin: 0px;
+   padding: 0;
+   height: 34px;
+ }
+ 
+  .main-toolbar md-input-container input {
+    border: none;
+    color: #fff;
+    font-size: 0.9em;
+  }
+
+::-webkit-input-placeholder {
+   color: #fff;
+   opacity: 0.8;
 }

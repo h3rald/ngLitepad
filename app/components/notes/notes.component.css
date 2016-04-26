@@ -1,3 +1,7 @@
 tbody tr {
   cursor: pointer;
 }
+
+tbody tr td:nth-child(6){
+  display: none;  
+}

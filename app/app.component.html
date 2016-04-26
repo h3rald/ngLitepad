@@ -26,7 +26,43 @@
                 [break]="190"
                 breakAction="show">
     </md-toolbar>
-   <searchbar></searchbar>
+   <md-toolbar layout="row" class="main-toolbar">
+      <h1 md-peekaboo
+          flex
+          [breakMd]="72"
+          [breakXs]="20"
+          breakAction="hide" [routerLink]="['Notes']">
+          <div flex *ngIf="!searchEnabled">{{title}}</div>
+          <md-input-container class="md-block" flex *ngIf="searchEnabled">
+            <input md-input [(ngModel)]="query" placeholder="Search..." flex (keyup)="keyPressed($event.keyCode)">
+          </md-input-container> 
+      </h1>
+      <button 
+            *ngIf="searchEnabled"
+            layout-align="center right"
+            md-button class="md-primary md-icon-button" 
+            aria-label="Cancel" 
+            (click)="enableSearch(false)">
+            <i md-icon>clear</i>
+          </button>
+          <button 
+            *ngIf="!searchEnabled"
+            layout-align="center right"
+            md-button class="md-primary md-icon-button" 
+            aria-label="Search" 
+            (click)="enableSearch(true)">
+            <i md-icon>search</i>
+          </button>
+          <button 
+            *ngIf="searchEnabled"
+            layout-align="center right"
+            md-button class="md-primary md-icon-button" 
+            aria-label="Search"
+            (click)="search()">
+            <i md-icon>search</i>
+          </button>
+       
+    </md-toolbar>
     <!--
     <md-toolbar class="fixed-toolbar">
       
@@ -57,7 +93,7 @@
       
     </md-toolbar>
 -->
-    <md-content md-scroll-y layout="column" flex="100" layout-padding>
+    <md-content md-scroll-y flex="100" layout-padding>
       
       <router-outlet></router-outlet>
       

@@ -23,10 +23,11 @@ export class NoteService {
   }
 
   private processNote(note: any) {
+    let fragments: Array<string> = note.data.split("\n\n");
     return {
       id: note.id.replace('litepad/notes/', ''),
-      title: note.data.title,
-      contents: note.data.contents,
+      title: fragments[0],
+      contents: fragments.slice(1).join("\n\n").trim(),
       created: new Date(Date.parse(note.created)),
       modified: note.modified ? new Date(Date.parse(note.modified)) : null,
       highlight: note.highlight,
@@ -66,8 +67,8 @@ export class NoteService {
   }
 
   create(note: Note) {
-    let body = JSON.stringify({ title: note.title, contents: note.contents });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let body = note.title + "\n\n" + note.contents;
+    let headers = new Headers({ 'Content-Type': 'text/x-markdown' });
     let options = new RequestOptions({ headers: headers });
     return this.http.post(this.url, body, options)
       .map(this.processData)
@@ -76,8 +77,8 @@ export class NoteService {
   }
   
   update(note: Note) {
-    let body = JSON.stringify({ title: note.title, contents: note.contents });
-    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let body = note.title + "\n\n" + note.contents;
+    let headers = new Headers({ 'Content-Type': 'text/x-markdown' });
     let options = new RequestOptions({ headers: headers });
     return this.http.put(this.url + note.id, body, options)
       .map(this.processData)

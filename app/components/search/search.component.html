@@ -1,4 +1,6 @@
 <div layout="column">
+    <h2 *ngIf="notes">Total Results: {{notes.length}}</h2>
+    <h2 *ngIf="!notes">No results found.</h2>
     <md-card *ngFor="#note of notes">
       <md-card-title>
         <md-card-title-text>

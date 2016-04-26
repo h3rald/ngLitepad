@@ -14,12 +14,11 @@ import { NoteDetailComponent} from './components/note.detail/note.detail.compone
 import { NoteService } from './services/note.service';
 import { NewNoteComponent } from './components/note.new/note.new.component';
 import { EditNoteComponent } from './components/note.edit/note.edit.component';
-import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import {Media, MATERIAL_DIRECTIVES, SidenavService} from 'ng2-material/all';
 
 @Component({
   selector: 'app',
-  directives: [MATERIAL_DIRECTIVES, ROUTER_DIRECTIVES, SearchbarComponent],
+  directives: [MATERIAL_DIRECTIVES, ROUTER_DIRECTIVES],
   providers: [
     ROUTER_PROVIDERS, 
     NoteService, 
@@ -32,9 +31,10 @@ import {Media, MATERIAL_DIRECTIVES, SidenavService} from 'ng2-material/all';
 })
 @RouteConfig([
   {
-    path: '/',
+    path: '/notes',
     name: 'Notes',
-    component: NotesComponent
+    component: NotesComponent,
+    useAsDefault: true
   },
   {
     path: '/search/:query',
@@ -61,6 +61,8 @@ export class AppComponent implements OnDestroy {
   title: string = "LitePad";
   version: string = "1.0"
   static SIDE_MENU_BREAKPOINT: string = 'gt-md';
+  searchEnabled = false;
+  query: string;
 
   @Input()
   fullPage: boolean = this.media.hasMedia(AppComponent.SIDE_MENU_BREAKPOINT);
@@ -86,6 +88,8 @@ export class AppComponent implements OnDestroy {
       this.appRef.tick();
     });
     
+    
+    
     /*
     http.get('public/version.json')
       .subscribe((res: Response) => {
@@ -99,6 +103,26 @@ export class AppComponent implements OnDestroy {
       });
       */
 
+  }
+  
+  keyPressed(key){
+      if (key == 13) {
+          this.search();
+      } else if (key == 27){
+          this.enableSearch(false);
+      }
+      
+  }
+
+ enableSearch(val: boolean){
+    this.searchEnabled = val;
+  }
+  
+  search(){
+    this.searchEnabled = false;
+    let query = this.query;
+    this.query = "";
+    this.router.navigate(['/Search', {query: query}]);
   }
 
   ngOnDestroy(): any {
