@@ -10,4 +10,5 @@ export class Note {
   tags: Array<string>;
   created: Date;
   modified: Date;
+  highlight: string;
 }

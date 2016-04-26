@@ -9,15 +9,17 @@ import {
   HashLocationStrategy } from 'angular2/router';
 import {Http, Response} from "angular2/http";
 import { NotesComponent } from './components/notes/notes.component';
+import { SearchComponent } from './components/search/search.component';
 import { NoteDetailComponent} from './components/note.detail/note.detail.component';
 import { NoteService } from './services/note.service';
 import { NewNoteComponent } from './components/note.new/note.new.component';
 import { EditNoteComponent } from './components/note.edit/note.edit.component';
+import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import {Media, MATERIAL_DIRECTIVES, SidenavService} from 'ng2-material/all';
 
 @Component({
   selector: 'app',
-  directives: [MATERIAL_DIRECTIVES, ROUTER_DIRECTIVES],
+  directives: [MATERIAL_DIRECTIVES, ROUTER_DIRECTIVES, SearchbarComponent],
   providers: [
     ROUTER_PROVIDERS, 
     NoteService, 
@@ -30,10 +32,14 @@ import {Media, MATERIAL_DIRECTIVES, SidenavService} from 'ng2-material/all';
 })
 @RouteConfig([
   {
-    path: '/notes',
+    path: '/',
     name: 'Notes',
-    component: NotesComponent,
-    useAsDefault: true
+    component: NotesComponent
+  },
+  {
+    path: '/search/:query',
+    name: 'Search',
+    component: SearchComponent
   },
   {
     path: '/detail/:id',

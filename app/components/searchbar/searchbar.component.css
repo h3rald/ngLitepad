@@ -1,0 +1,25 @@
+.main-toolbar {
+  min-height: 20px;
+}
+
+.main-toolbar h1 {
+  margin: 5px;
+  font-weight: normal;
+}
+ .main-toolbar md-input-container {
+   margin: 0;
+   height: 20px;
+ }
+ 
+  .main-toolbar md-input-container input {
+    border: none;
+    color: #fff;
+    font-size: 0.8em;
+  }
+  
+::-webkit-input-placeholder,
+::-moz-placeholder,
+:-ms-input-placeholder {
+   color: #fff;
+   opacity: 1;
+}

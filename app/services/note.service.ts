@@ -29,6 +29,7 @@ export class NoteService {
       contents: note.data.contents,
       created: new Date(Date.parse(note.created)),
       modified: note.modified ? new Date(Date.parse(note.modified)) : null,
+      highlight: note.highlight,
       tags: note.tags
     }
   }
@@ -45,6 +46,13 @@ export class NoteService {
 
   getAll(): Observable<Note[]> {
     return this.http.get(this.url + "?sort=-modified")
+      .map(this.processData)
+      .map((json: any) => { return json.results.map(this.processNote) })
+      .catch(this.handleError)
+  }
+  
+  search(query): Observable<Note[]> {
+    return this.http.get("http://localhost:9500/docs/" + "?search=" + query)
       .map(this.processData)
       .map((json: any) => { return json.results.map(this.processNote) })
       .catch(this.handleError)
