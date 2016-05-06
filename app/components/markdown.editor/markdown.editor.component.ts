@@ -29,7 +29,7 @@ export class MarkdownEditor {
         var el = elementRef.nativeElement;
 
         this.editor = ace.edit(el);
-        //this.editor.setTheme("ace/theme/monokai");
+        this.editor.setTheme("ace/theme/github");
         this.editor.getSession().setMode("ace/mode/markdown");
         this.editor.getSession().setUseWrapMode(true);
         this.editor.setOption("showPrintMargin", false)
@@ -46,6 +46,7 @@ export class MarkdownEditor {
    set source(text) {
       this.editor.setValue(text || "");
       this.editor.clearSelection();
+      this.editor.renderer.setShowGutter(false);
       //this.editor.focus();
     }
 
