@@ -4,10 +4,11 @@ import { Note } from '../../models/note';
 import { NoteService } from '../../services/note.service';
 import {MATERIAL_DIRECTIVES} from 'ng2-material/all';
 import { MarkdownEditor } from '../markdown.editor/markdown.editor.component';
+import { Focused } from '../../directives/focused/focused.directive';
 
 @Component({
   selector: 'new-note',
-  directives: [MATERIAL_DIRECTIVES, RouterLink, MarkdownEditor],
+  directives: [MATERIAL_DIRECTIVES, RouterLink, MarkdownEditor, Focused],
   templateUrl: 'app/components/note.new/note.new.component.html',
   styleUrls: ['app/components/note.new/note.new.component.css']
 })

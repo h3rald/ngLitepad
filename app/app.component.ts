@@ -1,4 +1,9 @@
-import { provide, Component, Input, OnDestroy, ApplicationRef  } from 'angular2/core';
+import { 
+  provide, 
+  Component, 
+  Input, 
+  OnDestroy, 
+  ApplicationRef } from 'angular2/core';
 import { 
   ROUTER_DIRECTIVES,
   ROUTER_PROVIDERS,
@@ -14,18 +19,23 @@ import { NoteDetailComponent} from './components/note.detail/note.detail.compone
 import { NoteService } from './services/note.service';
 import { NewNoteComponent } from './components/note.new/note.new.component';
 import { EditNoteComponent } from './components/note.edit/note.edit.component';
+import { Focused } from './directives/focused/focused.directive';
 import {Media, MATERIAL_DIRECTIVES, SidenavService} from 'ng2-material/all';
+import { ShortcutService } from './services/shortcut.service';
 
 @Component({
   selector: 'app',
-  directives: [MATERIAL_DIRECTIVES, ROUTER_DIRECTIVES],
+  directives: [MATERIAL_DIRECTIVES, ROUTER_DIRECTIVES, Focused],
   providers: [
     ROUTER_PROVIDERS, 
     NoteService, 
+    ShortcutService,
     provide(LocationStrategy, {useClass: HashLocationStrategy})],
   templateUrl: 'app/app.component.html',
   styleUrls: ['app/app.component.css'],
   host: {
+    '(document:keyup)': 'keyup($event)',
+    '(document:keydown)': 'keydown($event)',
     '[class.push-menu]': 'fullPage'
   }
 })
@@ -80,6 +90,7 @@ export class AppComponent implements OnDestroy {
               public router: Router,
               public appRef: ApplicationRef,
               //private _components: ComponentsService,
+              private _shortcut: ShortcutService,
               private _sidenav: SidenavService) {
     
     let query = Media.getQuery(AppComponent.SIDE_MENU_BREAKPOINT);
@@ -87,9 +98,7 @@ export class AppComponent implements OnDestroy {
       this.fullPage = mql.matches;
       this.appRef.tick();
     });
-    
-    
-    
+   
     /*
     http.get('public/version.json')
       .subscribe((res: Response) => {
@@ -102,19 +111,29 @@ export class AppComponent implements OnDestroy {
         this.components = comps;
       });
       */
-
+      
+      this._shortcut.register("ctrl.f", () => { 
+        this.enableSearch(true); 
+      });
+      this._shortcut.register("esc", () => { 
+        this.enableSearch(false);
+        this.router.navigate(['/Notes']); 
+      });
+      this._shortcut.register("ctrl.n", () => { 
+        this.enableSearch(false);
+        this.router.navigate(['/NewNote']); 
+      });
   }
   
-  keyPressed(key){
-      if (key == 13) {
-          this.search();
-      } else if (key == 27){
-          this.enableSearch(false);
-      }
-      
+  keydown($event) {
+    this._shortcut.keydown($event);
   }
+  
+  keyup($event) {
+    this._shortcut.keyup($event);
+  } 
 
- enableSearch(val: boolean){
+  enableSearch(val: boolean){
     this.searchEnabled = val;
   }
   
@@ -123,6 +142,10 @@ export class AppComponent implements OnDestroy {
     let query = this.query;
     this.query = "";
     this.router.navigate(['/Search', {query: query}]);
+  }
+  
+  shortcut($event){
+    console.log($event);
   }
 
   ngOnDestroy(): any {

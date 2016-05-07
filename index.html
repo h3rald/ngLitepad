@@ -50,7 +50,7 @@
 <!-- 3. Display the application -->
 
 <body>
-  <app>
+  <app shortcuts (keyup)="onKey($event)">
     <section layout="row" flex="100" layout-padding layout-fill layout-align="center center">
       <h3>Loading...</h3>
     </section>

@@ -34,10 +34,21 @@
           breakAction="hide" [routerLink]="['Notes']">
           <div flex *ngIf="!searchEnabled">{{title}}</div>
           <md-input-container class="md-block" flex *ngIf="searchEnabled">
-            <input md-input [(ngModel)]="query" placeholder="Search..." flex (keyup)="keyPressed($event.keyCode)">
+            <input md-input [(ngModel)]="query" placeholder="Search..." focused flex 
+              (keyup.esc)="enableSearch(false)"
+              (keyup.enter)="search()"
+              >
           </md-input-container> 
       </h1>
-      <button 
+          <button 
+            *ngIf="searchEnabled"
+            layout-align="center right"
+            md-button class="md-primary md-icon-button" 
+            aria-label="Search"
+            (click)="search()">
+            <i md-icon>search</i>
+          </button>
+          <button 
             *ngIf="searchEnabled"
             layout-align="center right"
             md-button class="md-primary md-icon-button" 
@@ -53,14 +64,7 @@
             (click)="enableSearch(true)">
             <i md-icon>search</i>
           </button>
-          <button 
-            *ngIf="searchEnabled"
-            layout-align="center right"
-            md-button class="md-primary md-icon-button" 
-            aria-label="Search"
-            (click)="search()">
-            <i md-icon>search</i>
-          </button>
+          
        
     </md-toolbar>
     <!--

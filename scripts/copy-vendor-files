@@ -9,7 +9,8 @@ cp node_modules/rxjs/bundles/Rx.js                                      vendor/r
 cp node_modules/angular2/bundles/angular2.dev.js                        vendor/angular2/
 cp node_modules/angular2/bundles/router.dev.js                          vendor/angular2/
 cp node_modules/angular2/bundles/http.dev.js                            vendor/angular2/
-cp node_modules/ng2-material/all.js                                     vendor/ng2-material
+cp node_modules/ng2-material/all.js                                     vendor/ng2-material/
+cp node_modules/ng2-material/all.js.map                                 vendor/ng2-material/
 cp -r node_modules/ng2-material/core                                    vendor/ng2-material/
 cp -r node_modules/ng2-material/components                              vendor/ng2-material/
 cp -r node_modules/ng2-material/dist                                    vendor/ng2-material/
