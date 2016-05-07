@@ -1,0 +1,18 @@
+cp node_modules/es6-shim/es6-shim.min.js                                vendor/es6-shim/
+cp node_modules/es6-shim/es6-shim.map                                   vendor/es6-shim/
+cp node_modules/systemjs/dist/system-polyfills.js                       vendor/systemjs/
+cp node_modules/systemjs/dist/system-polyfills.js.map                   vendor/systemjs/
+cp node_modules/angular2/es6/dev/src/testing/shims_for_IE.js            vendor/angular2/
+cp node_modules/angular2/bundles/angular2-polyfills.js                  vendor/angular2/
+cp node_modules/systemjs/dist/system.src.js                             vendor/systemjs/
+cp node_modules/rxjs/bundles/Rx.js                                      vendor/rxjs/
+cp node_modules/angular2/bundles/angular2.dev.js                        vendor/angular2/
+cp node_modules/angular2/bundles/router.dev.js                          vendor/angular2/
+cp node_modules/angular2/bundles/http.dev.js                            vendor/angular2/
+cp node_modules/ng2-material/all.js                                     vendor/ng2-material
+cp -r node_modules/ng2-material/core                                    vendor/ng2-material/
+cp -r node_modules/ng2-material/components                              vendor/ng2-material/
+cp -r node_modules/ng2-material/dist                                    vendor/ng2-material/
+cp node_modules/ace-builds/src/ace.js                                   vendor/ace/
+cp node_modules/ace-builds/src/mode-markdown.js                         vendor/ace/
+cp node_modules/ace-builds/src/theme-github.js                          vendor/ace/

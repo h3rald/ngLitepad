@@ -5,6 +5,7 @@
     "start": "concurrently \"npm run tsc:w\" \"npm run litestore\"",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
+    "copy-vendor-files": "./scripts/copy-vendor-files",
     "litestore": "litestore -d:.",
     "typings": "typings",
     "postinstall": "typings install"
@@ -20,6 +21,7 @@
   },
   "homepage": "https://github.com/h3rald/litepad#readme",
   "dependencies": {
+    "ace-builds": "^1.2.2",
     "angular2": "^2.0.0-beta.14",
     "es6-shim": "^0.35.0",
     "marked": "^0.3.5",

@@ -5,26 +5,27 @@
   <title>LitePad</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="node_modules/ng2-material/dist/font.css">
-  <link rel="stylesheet" href="node_modules/ng2-material/dist/ng2-material.css">
+  <link rel="stylesheet" href="vendor/ng2-material/dist/font.css">
+  <link rel="stylesheet" href="vendor/ng2-material/dist/ng2-material.css">
 
   <!-- 1. Load libraries -->
   <!-- IE required polyfills, in this exact order -->
-  <script src="node_modules/es6-shim/es6-shim.min.js"></script>
-  <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
-  <script src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
+  <script src="vendor/es6-shim/es6-shim.min.js"></script>
+  <script src="vendor/systemjs/system-polyfills.js"></script>
+  <script src="vendor/angular2/shims_for_IE.js"></script>
 
-  <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
-  <script src="node_modules/systemjs/dist/system.src.js"></script>
-  <script src="node_modules/rxjs/bundles/Rx.js"></script>
-  <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
-  <script src="node_modules/angular2/bundles/router.dev.js"></script>
-  <script src="node_modules/angular2/bundles/http.dev.js"></script>
+  <script src="vendor/angular2/angular2-polyfills.js"></script>
+  <script src="vendor/systemjs/system.src.js"></script>
+  <script src="vendor/rxjs/Rx.js"></script>
+  <script src="vendor/angular2/angular2.dev.js"></script>
+  <script src="vendor/angular2/router.dev.js"></script>
+  <script src="vendor/angular2/http.dev.js"></script>
   <script src="vendor/ace/ace.js"></script>
   <script src="vendor/ace/mode-markdown.js"></script>
 
-  <!--  <script src="node_modules/ng2-material/dist/ng2-material.js"></script>
--->
+  <!--
+    <script src="node_modules/ng2-material/dist/ng2-material.js"></script> 
+    -->
   <!-- 2. Configure SystemJS -->
   <script>
     System.config({
@@ -34,11 +35,18 @@
             defaultExtension: 'js'
           },
           'ng2-material': {
-                defaultExtension: 'js'
+            defaultExtension: 'js'
           }
         },
         map: {
-            'ng2-material': 'node_modules/ng2-material',
+           'ng2-material': 'vendor/ng2-material',
+           /*'angular2/src/facade/lang.js': 'vendor/angular2/angular2.dev.js',
+           'angular2/src/facade/async.js': 'vendor/angular2/angular2.dev.js',
+           'angular2/src/facade/math.js': 'vendor/angular2/angular2.dev.js',
+           'angular2/src/facade/promise.js': 'vendor/angular2/angular2.dev.js',
+           'angular2/common.js': 'vendor/angular2/angular2.dev.js',
+           'angular2/src/platform/dom/dom_adapter.js': 'vendor/angular2/angular2.dev.js',
+            'angular2/core.js': 'vendor/angular2/angular2.dev.js',*/
             'marked': 'node_modules/marked/lib/marked.js'
         }
       });
