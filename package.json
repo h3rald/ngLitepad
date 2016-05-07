@@ -6,6 +6,7 @@
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "copy-vendor-files": "./scripts/copy-vendor-files",
+    "sass": "node-sass styles.scss styles.css",
     "litestore": "litestore -d:.",
     "typings": "typings",
     "postinstall": "typings install"

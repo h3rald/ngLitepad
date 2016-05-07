@@ -1,0 +1,6 @@
+$md-font-url: "vendor/ng2-material/dist/";
+@import "vendor/ng2-material/dist/font.scss";
+@import "vendor/ng2-material/source/core.scss";
+$md-primary: md-palette($md-indigo, 500, 100, 700, $md-contrast-palettes);
+$md-accent: md-palette($md-cyan, 500, 300, 700, $md-contrast-palettes);
+@import "vendor/ng2-material/source/components.scss";
