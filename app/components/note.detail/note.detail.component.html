@@ -5,7 +5,7 @@
     <md-toolbar class="md-primary md-toolbar-tools">
         <h3>{{note.title}}</h3>
         <span flex></span>
-        <button md-button class="md-primary md-icon-button" aria-label="Delete" (click)="delete()">
+        <button md-button class="md-primary md-icon-button" aria-label="Delete" (click)="confirmDelete()">
             <i md-icon>delete</i>
           </button>
           <button md-button class="md-primary md-icon-button" aria-label="Edit" [routerLink]="['EditNote', {id: note.id}]">
