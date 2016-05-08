@@ -1,5 +1,6 @@
 h1 {
   cursor: pointer;
+  font-size: 1.2em;
 }
 
 .app-content {
@@ -10,27 +11,39 @@ footer {
   height: 64px;
 }
 
+
 .main-toolbar {
-  min-height: 40px;
+  min-height: 38px;
 }
 
 .main-toolbar h1 {
   margin: 5px;
   font-weight: normal;
 }
- .main-toolbar md-input-container {
-   margin: 0px;
+
+
+ .main-toolbar .searchbar {
+   font-weight: normal;
+   margin: 0;
    padding: 0;
-   height: 34px;
  }
  
-  .main-toolbar md-input-container input {
-    border: none;
-    color: #fff;
-    font-size: 0.9em;
-  }
+ .main-toolbar .searchbar input {
+   width: 100%;
+   font-size: 0.7em;
+   border-radius: 3px;
+   opacity: 0.1;
+   border: 1px solid #fff;
+   color: #000;
+ }
+ 
+ .main-toolbar .searchbar input:focus {
+   opacity: 0.3;
+   outline: none;
+ }
 
 ::-webkit-input-placeholder {
-   color: #fff;
+   color: #111;
    opacity: 0.8;
 }
+

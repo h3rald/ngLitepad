@@ -22,7 +22,7 @@
       <div layout-gt-sm="row">
         <md-input-container class="md-block" flex-gt-sm>
           <label>Title</label>
-          <input md-input [(ngModel)]="note.title">
+          <input md-input [(ngModel)]="note.title" (keydown.control.s)="save()">
         </md-input-container>
       </div>
       <div layout-gt-sm="row">
@@ -32,6 +32,7 @@
             flex-gt-sm
             md-input 
             markdown-editor 
+            (keydown.control.s)="save()"
             [source]="note.contents" 
             (change)="updateContents($event)">
           </div>
