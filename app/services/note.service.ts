@@ -46,14 +46,14 @@ export class NoteService {
   }
 
   getAll(): Observable<Note[]> {
-    return this.http.get(this.url + "?sort=-modified")
+    return this.http.get(this.url + "?sort=-modified,-created")
       .map(this.processData)
       .map((json: any) => { return json.results.map(this.processNote) })
       .catch(this.handleError)
   }
   
   search(query): Observable<Note[]> {
-    return this.http.get("http://localhost:9500/docs/" + "?search=" + query)
+    return this.http.get(this.url + "?search=" + query)
       .map(this.processData)
       .map((json: any) => { return json.results.map(this.processNote) })
       .catch(this.handleError)
